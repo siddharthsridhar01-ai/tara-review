@@ -623,19 +623,7 @@ export default function App() {
               fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
             }}
           >← Previous</button>
-          <button
-            onClick={() => setStep(Math.min(2, step + 1))}
-            disabled={step === 2}
-            style={{
-              flex: 1, padding: "13px 20px", borderRadius: 10, border: "none",
-              background: step === 2 ? "#1e2030" : `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`,
-              color: step === 2 ? C.muted : C.white,
-              fontSize: 14, fontWeight: 600,
-              cursor: step === 2 ? "not-allowed" : "pointer",
-              opacity: step === 2 ? 0.4 : 1,
-              fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
-            }}
-          >Next →</button>
+          {step < 2 ? (<button onClick={() => setStep(step + 1)} style={{ flex: 1, padding: "13px 20px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`, color: C.white, fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Next →</button>) : (<button onClick={() => window.dispatchEvent(new CustomEvent("walkthrough-complete"))} style={{ flex: 1, padding: "13px 20px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${C.ok}, #2ecc71)`, color: C.white, fontSize: 14, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>✓ Back to Question Review</button>)}
         </div>
       </div>
     </div>

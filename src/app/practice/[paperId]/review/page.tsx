@@ -81,6 +81,12 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
     return () => window.removeEventListener("keydown", handleKey);
   }, [view, activeQ, walkthroughOpen, filteredQs]);
 
+  useEffect(() => {
+    const handleComplete = () => setWalkthroughOpen(null);
+    window.addEventListener("walkthrough-complete", handleComplete);
+    return () => window.removeEventListener("walkthrough-complete", handleComplete);
+  }, []);
+
   return (
     <div style={{ minHeight: "100vh", background: C.bg, fontFamily: font, letterSpacing: 0.2 }}>
 

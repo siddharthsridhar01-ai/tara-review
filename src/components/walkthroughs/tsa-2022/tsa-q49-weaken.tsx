@@ -612,23 +612,7 @@ export default function App() {
         )}
 
         <div style={{ display: "flex", gap: 12, paddingBottom: 32 }}>
-          <button onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0} style={{
-            flex: 1, padding: "13px 20px", borderRadius: 10,
-            border: `1px solid ${C.border}`,
-            background: step === 0 ? C.card : "#1e2030",
-            color: step === 0 ? C.muted : C.text,
-            fontSize: 14, fontWeight: 600,
-            cursor: step === 0 ? "not-allowed" : "pointer",
-            opacity: step === 0 ? 0.4 : 1
-          }}>← Previous</button>
-          <button onClick={() => setStep(Math.min(3, step + 1))} disabled={step === 3} style={{
-            flex: 1, padding: "13px 20px", borderRadius: 10, border: "none",
-            background: step === 3 ? "#1e2030" : `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`,
-            color: step === 3 ? C.muted : C.white,
-            fontSize: 14, fontWeight: 600,
-            cursor: step === 3 ? "not-allowed" : "pointer",
-            opacity: step === 3 ? 0.4 : 1
-          }}>Next →</button>
+          {step < 3 ? (<button onClick={() => setStep(step + 1)} style={{ flex: 1, padding: "13px 20px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`, color: C.white, fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Next →</button>) : (<button onClick={() => window.dispatchEvent(new CustomEvent("walkthrough-complete"))} style={{ flex: 1, padding: "13px 20px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${C.ok}, #2ecc71)`, color: C.white, fontSize: 14, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>✓ Back to Question Review</button>)}
         </div>
       </div>
     </div>

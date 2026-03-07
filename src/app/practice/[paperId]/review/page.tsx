@@ -92,11 +92,11 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
 
       <div style={{ background: C.card, borderBottom: `1px solid ${C.border}`, padding: "16px 24px", position: "sticky", top: 0, zIndex: 50 }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", cursor: "pointer" }}>
             <span style={{ background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`, borderRadius: 8, padding: "5px 12px", fontSize: 11, fontWeight: 700, color: C.white, letterSpacing: 1 }}>TARA</span>
             <span style={{ fontSize: 14, color: C.white, fontWeight: 600 }}>Critical Thinking</span>
             <span style={{ fontSize: 12, color: C.muted }}>Practice Paper</span>
-          </div>
+          </a>
           <div style={{ display: "flex", gap: 4 }}>
             {(["summary", "review"] as const).map(v => (
               <button key={v} onClick={() => { setView(v); setActiveQ(null); setWalkthroughOpen(null); }} style={{

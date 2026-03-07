@@ -222,7 +222,18 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
                   </div>
 
                   <p style={{ fontSize: 12, color: C.muted, margin: "0 0 16px" }}>{source} · Question {currentQ.tsaNum}</p>
-                  <p style={{ fontSize: 14, color: C.text, lineHeight: 1.7, margin: "0 0 20px" }}>{currentQ.text}</p>
+
+                  {currentQ.passage && (
+                    <div style={{
+                      background: C.bg, border: `1px solid ${C.border}`, borderRadius: 12,
+                      padding: "18px 22px", margin: "0 0 18px",
+                    }}>
+                      <span style={{ fontSize: 10, fontWeight: 600, color: C.muted, letterSpacing: 1, textTransform: "uppercase", display: "block", marginBottom: 10 }}>Passage</span>
+                      <p style={{ fontSize: 14, color: C.text, lineHeight: 1.8, margin: 0 }}>{currentQ.passage}</p>
+                    </div>
+                  )}
+
+                  <p style={{ fontSize: 14, color: C.text, lineHeight: 1.7, margin: "0 0 20px", fontWeight: 600 }}>{currentQ.text}</p>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>
                     {currentQ.options.map(opt => {

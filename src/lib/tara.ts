@@ -39,6 +39,7 @@ export interface Question {
   tsaNum: number;
   type: string;
   text: string;
+  passage: string;
   correctAnswer: string;
   options: string[];
   hasWalkthrough: boolean;

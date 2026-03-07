@@ -502,7 +502,7 @@ export default function App() {
             fontFamily: "'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif",
             fontStyle: "italic", letterSpacing: 0.5,
           }}>Interactive Walkthrough</h1>
-          <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>TSA 2022 · Question</p>
+          <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>TSA 2022 · Question 28</p>
         </div>
 
         {/* Step Nav */}

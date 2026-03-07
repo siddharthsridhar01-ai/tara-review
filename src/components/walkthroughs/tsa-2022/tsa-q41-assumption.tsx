@@ -491,7 +491,7 @@ export default function App() {
             <span style={{ fontSize: 12, color: C.assum }}>Identifying an Assumption</span>
           </div>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: C.white, margin: "0 0 4px", fontFamily: "'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif", fontStyle: "italic", letterSpacing: 0.5 }}>Interactive Walkthrough</h1>
-          <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>TSA 2022 · Question 5</p>
+          <p style={{ fontSize: 13, color: C.muted, margin: 0 }}>TSA 2022 · Question 41</p>
         </div>
 
         {/* Step Nav */}

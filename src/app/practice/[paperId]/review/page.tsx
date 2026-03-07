@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, use } from "react";
+import { useSearchParams } from "next/navigation";
 import { C, typeColors, getResult } from "@/lib/tara";
 import { papers } from "@/lib/papers";
 import WalkthroughLoader from "@/components/walkthroughs/WalkthroughLoader";
@@ -11,16 +12,34 @@ const mockAnswers: Record<number, string> = {
   17: "D", 18: "C", 19: "D", 20: "A", 21: "D", 22: "E", 23: "B",
 };
 
+function parseAnswersFromURL(param: string | null): Record<number, string> | null {
+  if (!param) return null;
+  try {
+    const parsed = JSON.parse(decodeURIComponent(param));
+    if (typeof parsed === "object" && parsed !== null) {
+      const result: Record<number, string> = {};
+      for (const [k, v] of Object.entries(parsed)) {
+        result[Number(k)] = String(v);
+      }
+      return result;
+    }
+  } catch {}
+  return null;
+}
+
 export default function ReviewPage({ params }: { params: Promise<{ paperId: string }> }) {
   const { paperId } = use(params);
   const paper = papers[paperId];
+  const searchParams = useSearchParams();
 
   const [view, setView] = useState<"summary" | "review">("summary");
   const [activeQ, setActiveQ] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(true);
   const [walkthroughOpen, setWalkthroughOpen] = useState<number | null>(null);
 
-  const answers = mockAnswers;
+  const urlAnswers = parseAnswersFromURL(searchParams.get("answers"));
+  const answers = urlAnswers || mockAnswers;
+  const isFromExam = !!urlAnswers;
 
   if (!paper) {
     return (
@@ -96,7 +115,13 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
         {view === "summary" && (
           <>
             <h1 style={{ fontSize: 28, fontWeight: 700, color: C.white, margin: "0 0 6px", fontFamily: headingFont, fontStyle: "italic" }}>Your Results</h1>
-            <p style={{ fontSize: 13, color: C.muted, margin: "0 0 28px" }}>{title} · {total} Questions</p>
+            <p style={{ fontSize: 13, color: C.muted, margin: "0 0 16px" }}>{title} · {total} Questions</p>
+
+            {!isFromExam && (
+              <div style={{ background: "rgba(253,203,110,0.10)", border: "1px solid rgba(253,203,110,0.3)", borderRadius: 10, padding: "10px 16px", marginBottom: 20, display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 12, color: "#fdcb6e" }}>Demo mode — showing sample answers. Take the exam to see your real results.</span>
+              </div>
+            )}
 
             <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: "28px 32px", marginBottom: 24 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 32 }}>

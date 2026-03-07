@@ -289,7 +289,10 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
               <div><span style={{ fontSize: 28, fontWeight: 700, color: C.fail }}>{total - correct}</span><span style={{ fontSize: 12, color: C.muted, marginLeft: 4 }}>incorrect</span></div>
             </div>
 
-            <button onClick={() => router.push(`/practice/${paperId}/review`)} style={{
+            <button onClick={() => {
+              const encoded = encodeURIComponent(JSON.stringify(answers));
+              router.push(`/practice/${paperId}/review?answers=${encoded}`);
+            }} style={{
               width: "100%", padding: "14px 20px", borderRadius: 12, border: "none",
               background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`,
               color: C.white, fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: themes.tara.font,

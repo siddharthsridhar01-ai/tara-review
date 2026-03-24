@@ -44,7 +44,7 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
   if (!paper) {
     return (
       <div style={{ minHeight: "100vh", background: C.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <p style={{ color: C.fail, fontSize: 16, fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif" }}>Paper not found.</p>
+        <p style={{ color: C.fail, fontSize: 16, fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif" }}>Paper not found.</p>
       </div>
     );
   }
@@ -58,7 +58,7 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
   const filteredQs = showAll ? questions : questions.filter(q => getResult(q, answers) === "incorrect");
   const currentQ = activeQ !== null ? questions.find(q => q.displayNum === activeQ) || null : null;
 
-  const font = "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif";
+  const font = "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif";
   const headingFont = "'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif";
 
   useEffect(() => {

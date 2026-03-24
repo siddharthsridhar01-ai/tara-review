@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { papers } from "@/lib/papers";
 import { C, typeColors } from "@/lib/tara";
 
-const font = "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif";
+const font = "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif";
 const headingFont =
   "'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif";
 

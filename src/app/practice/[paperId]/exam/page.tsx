@@ -25,7 +25,7 @@ const themes: Record<ThemeMode, Record<string, string>> = {
     optionBg: "transparent", optionSelectedBg: "rgba(108,92,231,0.15)",
     optionBorder: C.border, optionSelectedBorder: C.accent,
     flagColor: "#fdcb6e", navBg: C.card,
-    font: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
+    font: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif",
     headingFont: "'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif",
   },
   vue: {

@@ -249,7 +249,7 @@ function PrincipleExtractor() {
                         background: thisC ? C.prinBg : thisW ? C.failBg : "transparent",
                         color: thisC ? C.prin : thisW ? C.fail : C.muted,
                         cursor: isC ? "default" : "pointer", opacity: isC && !thisC ? 0.3 : 1,
-                        fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
+                        fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif",
                       }}>{o.text}</button>
                     );
                   })}
@@ -326,7 +326,7 @@ function PracticeStep() {
                   background: isLocked && s.applies ? C.conclBg : ans === true && isWrong ? C.failBg : "transparent",
                   color: isLocked && s.applies ? C.ok : ans === true && isWrong ? C.fail : C.muted,
                   cursor: isLocked ? "default" : "pointer",
-                  fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
+                  fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif",
                 }}>Principle applies</button>
                 <button onClick={() => handleClick(s.id, false)} style={{
                   padding: "8px 16px", borderRadius: 6, fontSize: 12, fontWeight: 600,
@@ -334,7 +334,7 @@ function PracticeStep() {
                   background: isLocked && !s.applies ? C.conclBg : ans === false && isWrong ? C.failBg : "transparent",
                   color: isLocked && !s.applies ? C.ok : ans === false && isWrong ? C.fail : C.muted,
                   cursor: isLocked ? "default" : "pointer",
-                  fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
+                  fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif",
                 }}>Does not apply</button>
               </div>
               {isWrong && (
@@ -455,7 +455,7 @@ export default function App() {
   }, [step]);
 
   return (
-    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif", letterSpacing: 0.2, padding: "24px 16px" }}>
+    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif", letterSpacing: 0.2, padding: "24px 16px" }}>
       <div style={{ maxWidth: 780, margin: "0 auto" }}>
         <div style={{ marginBottom: 24 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
@@ -476,7 +476,7 @@ export default function App() {
               border: `1px solid ${step === s.id ? C.accent : step > s.id ? C.accent + "44" : C.border}`,
               borderRadius: 10, padding: "10px 6px", cursor: "pointer", transition: "all 0.3s",
               display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
-              fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
+              fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif",
             }}>
               <span style={{ fontSize: 14, fontWeight: 700, color: step === s.id ? C.white : step > s.id ? C.accentLight : C.muted, lineHeight: 1 }}>{s.id + 1}</span>
               <span style={{ fontSize: 11, fontWeight: step === s.id ? 700 : 500, color: step === s.id ? C.white : step > s.id ? C.accentLight : C.muted, whiteSpace: "nowrap" }}>{s.label}</span>
@@ -541,7 +541,7 @@ export default function App() {
             fontSize: 14, fontWeight: 600,
             cursor: step === 0 ? "not-allowed" : "pointer",
             opacity: step === 0 ? 0.4 : 1,
-            fontFamily: "'Gill Sans', 'Trebuchet MS', Calibri, sans-serif",
+            fontFamily: "'Trebuchet MS', 'Gill Sans', Calibri, sans-serif",
           }}>← Previous</button>
           {step < 3 ? (<button onClick={() => setStep(step + 1)} style={{ flex: 1, padding: "13px 20px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`, color: C.white, fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Next →</button>) : (<button onClick={() => window.dispatchEvent(new CustomEvent("walkthrough-complete"))} style={{ flex: 1, padding: "13px 20px", borderRadius: 10, border: "none", background: `linear-gradient(135deg, ${C.ok}, #2ecc71)`, color: C.white, fontSize: 14, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>✓ Back to Question Review</button>)}
         </div>

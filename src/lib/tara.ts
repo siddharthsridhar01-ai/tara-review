@@ -42,8 +42,8 @@ export interface Question {
   text: string;
   passage: string;
   correctAnswer: string;
-  /** Options can be a list of letters (CT: "A"-"E") or a list of {letter, text} pairs (PS: label + meaningful text) */
-  options: string[] | { letter: string; text: string }[];
+  /** Each option pairs a letter (A-E) with its full text — the actual conclusion/statement/value */
+  options: { letter: string; text: string }[];
   hasWalkthrough: boolean;
   /** For PS questions with figures (tables, charts, diagrams). Key identifies which renderer to use. */
   figureKey?: string;

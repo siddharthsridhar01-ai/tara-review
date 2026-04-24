@@ -442,8 +442,8 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
                 const isSelected = answers[q.displayNum] === letter;
                 return (
                   <button key={letter} onClick={() => selectAnswer(letter)} style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    padding: mode === "vue" ? "12px 16px" : "12px 16px",
+                    display: "flex", alignItems: "flex-start", gap: 12,
+                    padding: mode === "vue" ? "12px 16px" : "14px 16px",
                     borderRadius: mode === "vue" ? 3 : 10,
                     background: isSelected ? t.optionSelectedBg : t.optionBg,
                     border: `1.5px solid ${isSelected ? t.optionSelectedBorder : t.optionBorder}`,
@@ -457,9 +457,9 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
                       background: isSelected ? t.accent : (mode === "vue" ? "#f0f0f0" : C.border),
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: 12, fontWeight: 700,
-                      color: isSelected ? "#fff" : t.muted, flexShrink: 0,
+                      color: isSelected ? "#fff" : t.muted, flexShrink: 0, marginTop: 1,
                     }}>{mode === "vue" && isSelected ? "●" : letter}</span>
-                    <span style={{ fontSize: 14, color: isSelected ? t.text : t.muted, fontWeight: isSelected ? 600 : 400 }}>
+                    <span style={{ fontSize: 14, color: isSelected ? t.text : t.muted, fontWeight: isSelected ? 600 : 400, lineHeight: 1.55, flex: 1 }}>
                       {label}
                     </span>
                   </button>

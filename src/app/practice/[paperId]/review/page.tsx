@@ -283,8 +283,8 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
                       else if (showAsWrong) { borderColor = C.fail; bg = C.failBg; textColor = C.fail; }
                       return (
                         <div key={letter} style={{
-                          display: "flex", alignItems: "center", gap: 12,
-                          padding: "10px 14px", borderRadius: 10,
+                          display: "flex", alignItems: "flex-start", gap: 12,
+                          padding: "12px 14px", borderRadius: 10,
                           background: bg, border: `1.5px solid ${borderColor}`,
                         }}>
                           <span style={{
@@ -292,9 +292,9 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
                             background: isCorrectAnswer ? C.ok : showAsWrong ? C.fail : C.border,
                             display: "flex", alignItems: "center", justifyContent: "center",
                             fontSize: 12, fontWeight: 700, color: (isCorrectAnswer || showAsWrong) ? C.white : C.muted,
-                            flexShrink: 0,
+                            flexShrink: 0, marginTop: 1,
                           }}>{isCorrectAnswer ? "✓" : showAsWrong ? "✗" : letter}</span>
-                          <span style={{ fontSize: 13, color: textColor, fontWeight: (isCorrectAnswer || showAsWrong) ? 600 : 400 }}>
+                          <span style={{ fontSize: 13, color: textColor, fontWeight: (isCorrectAnswer || showAsWrong) ? 600 : 400, lineHeight: 1.55, flex: 1 }}>
                             {label}
                             {isStudentAnswer && isCorrect && <span style={{ fontSize: 11, color: C.ok, marginLeft: 8 }}>Your answer</span>}
                             {isStudentAnswer && !isCorrect && <span style={{ fontSize: 11, color: C.fail, marginLeft: 8 }}>Your answer</span>}

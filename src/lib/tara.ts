@@ -42,8 +42,11 @@ export interface Question {
   text: string;
   passage: string;
   correctAnswer: string;
-  options: string[];
+  /** Options can be a list of letters (CT: "A"-"E") or a list of {letter, text} pairs (PS: label + meaningful text) */
+  options: string[] | { letter: string; text: string }[];
   hasWalkthrough: boolean;
+  /** For PS questions with figures (tables, charts, diagrams). Key identifies which renderer to use. */
+  figureKey?: string;
 }
 
 export function getResult(q: Question, answers: Record<number, string>): "correct" | "incorrect" | "unanswered" {

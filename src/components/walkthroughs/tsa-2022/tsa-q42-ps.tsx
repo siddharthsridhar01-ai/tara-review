@@ -462,7 +462,7 @@ export default function App() {
               <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                 <span style={{ background: C.calcBg, border: `1px solid ${C.calc}`, borderRadius: 6, padding: "4px 10px", fontSize: 12, color: C.calc, fontWeight: 700, whiteSpace: "nowrap" }}>KEY POINT</span>
                 <p style={{ color: C.text, fontSize: 14, lineHeight: 1.7, margin: 0 }}>
-                  The starting pair must be the most valuable, since we spend money both days. The three pair sums decrease: Pair 1 {">"} Pair 2 {">"} Pair 3, with differences of 2P and P.
+                  The starting pair must be the most valuable, since we spend money both days. The three pair sums decrease: Pair 1 &gt; Pair 2 &gt; Pair 3, with differences of 2P and P.
                 </p>
               </div>
             </div>

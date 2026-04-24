@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { C, typeColors, getResult } from "@/lib/tara";
 import { papers } from "@/lib/papers";
 import WalkthroughLoader from "@/components/walkthroughs/WalkthroughLoader";
+import QuestionFigure from "@/components/QuestionFigure";
 
 const mockAnswers: Record<number, string> = {
   1: "A", 2: "C", 3: "E", 4: "C", 5: "B", 6: "D", 7: "A", 8: "C",
@@ -264,12 +265,16 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
                     </div>
                   )}
 
+                  {currentQ.figureKey && <QuestionFigure figureKey={currentQ.figureKey} />}
+
                   <p style={{ fontSize: 14, color: C.text, lineHeight: 1.7, margin: "0 0 20px", fontWeight: 600 }}>{currentQ.text}</p>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>
-                    {currentQ.options.map(opt => {
-                      const isStudentAnswer = sa === opt;
-                      const isCorrectAnswer = currentQ.correctAnswer === opt;
+                    {currentQ.options.map((optRaw) => {
+                      const letter = typeof optRaw === "string" ? optRaw : optRaw.letter;
+                      const label = typeof optRaw === "string" ? `Option ${letter}` : optRaw.text;
+                      const isStudentAnswer = sa === letter;
+                      const isCorrectAnswer = currentQ.correctAnswer === letter;
                       const showAsWrong = isStudentAnswer && !isCorrect;
                       let borderColor = C.border;
                       let bg = "transparent";
@@ -277,7 +282,7 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
                       if (isCorrectAnswer) { borderColor = C.ok; bg = C.conclBg; textColor = C.ok; }
                       else if (showAsWrong) { borderColor = C.fail; bg = C.failBg; textColor = C.fail; }
                       return (
-                        <div key={opt} style={{
+                        <div key={letter} style={{
                           display: "flex", alignItems: "center", gap: 12,
                           padding: "10px 14px", borderRadius: 10,
                           background: bg, border: `1.5px solid ${borderColor}`,
@@ -288,9 +293,9 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
                             display: "flex", alignItems: "center", justifyContent: "center",
                             fontSize: 12, fontWeight: 700, color: (isCorrectAnswer || showAsWrong) ? C.white : C.muted,
                             flexShrink: 0,
-                          }}>{isCorrectAnswer ? "✓" : showAsWrong ? "✗" : opt}</span>
+                          }}>{isCorrectAnswer ? "✓" : showAsWrong ? "✗" : letter}</span>
                           <span style={{ fontSize: 13, color: textColor, fontWeight: (isCorrectAnswer || showAsWrong) ? 600 : 400 }}>
-                            Option {opt}
+                            {label}
                             {isStudentAnswer && isCorrect && <span style={{ fontSize: 11, color: C.ok, marginLeft: 8 }}>Your answer</span>}
                             {isStudentAnswer && !isCorrect && <span style={{ fontSize: 11, color: C.fail, marginLeft: 8 }}>Your answer</span>}
                             {isCorrectAnswer && !isStudentAnswer && <span style={{ fontSize: 11, color: C.ok, marginLeft: 8 }}>Correct answer</span>}

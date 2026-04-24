@@ -4,11 +4,13 @@ import { useState, useEffect, useCallback, useRef, use } from "react";
 import { useRouter } from "next/navigation";
 import { papers } from "@/lib/papers";
 import { C } from "@/lib/tara";
+import QuestionFigure from "@/components/QuestionFigure";
 
 type ExamPhase = "intro" | "exam" | "review-screen" | "submitted";
 type ThemeMode = "tara" | "vue";
 
-const EXAM_DURATION_SECONDS = 48 * (90 / 50) * 60; // ~86.4 min, scaled from 90 min / 50 qs
+// Scale exam duration from real TSA: 90 min for 50 qs
+const durationForCount = (n: number) => Math.floor(n * (90 / 50) * 60);
 
 function formatTime(s: number) {
   const m = Math.floor(s / 60);
@@ -44,13 +46,14 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
   const { paperId } = use(params);
   const router = useRouter();
   const paper = papers[paperId];
+  const examDurationSeconds = paper ? durationForCount(paper.questions.length) : 0;
 
   const [phase, setPhase] = useState<ExamPhase>("intro");
   const [mode, setMode] = useState<ThemeMode>("tara");
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [flagged, setFlagged] = useState<Set<number>>(new Set());
-  const [timeLeft, setTimeLeft] = useState(Math.floor(EXAM_DURATION_SECONDS));
+  const [timeLeft, setTimeLeft] = useState(examDurationSeconds);
   const [timerVisible, setTimerVisible] = useState(true);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -61,8 +64,8 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
     setCurrentQ(0);
     setAnswers({});
     setFlagged(new Set());
-    setTimeLeft(Math.floor(EXAM_DURATION_SECONDS));
-  }, []);
+    setTimeLeft(examDurationSeconds);
+  }, [examDurationSeconds]);
 
   // Timer
   useEffect(() => {
@@ -123,7 +126,7 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
             </div>
 
             <h1 style={{ fontSize: 28, fontWeight: 700, color: C.white, margin: "0 0 8px", fontFamily: themes.tara.headingFont, fontStyle: "italic" }}>{title}</h1>
-            <p style={{ fontSize: 14, color: C.muted, margin: "0 0 32px" }}>{source} · {total} Questions · {formatTime(Math.floor(EXAM_DURATION_SECONDS))}</p>
+            <p style={{ fontSize: 14, color: C.muted, margin: "0 0 32px" }}>{source} · {total} Questions · {formatTime(examDurationSeconds)}</p>
 
             <div style={{ marginBottom: 32 }}>
               <span style={{ fontSize: 11, fontWeight: 600, color: C.muted, letterSpacing: 1, textTransform: "uppercase", display: "block", marginBottom: 12 }}>Exam Mode</span>
@@ -145,7 +148,7 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
                 <strong style={{ color: C.white }}>Instructions:</strong>
               </p>
               <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.7, margin: "0 0 6px" }}>
-                · You have <strong style={{ color: C.white }}>{formatTime(Math.floor(EXAM_DURATION_SECONDS))}</strong> to complete {total} questions
+                · You have <strong style={{ color: C.white }}>{formatTime(examDurationSeconds)}</strong> to complete {total} questions
               </p>
               <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.7, margin: "0 0 6px" }}>
                 · Use the <strong style={{ color: "#fdcb6e" }}>flag</strong> button to mark questions for later review
@@ -425,15 +428,20 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
               </div>
             )}
 
+            {/* Figure (PS questions with tables/charts/diagrams) */}
+            {q.figureKey && <QuestionFigure figureKey={q.figureKey} />}
+
             {/* Question text */}
             <p style={{ fontSize: 14, color: t.text, lineHeight: 1.7, margin: "0 0 20px", fontWeight: 600 }}>{q.text}</p>
 
             {/* Options */}
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {q.options.map(opt => {
-                const isSelected = answers[q.displayNum] === opt;
+              {q.options.map((optRaw) => {
+                const letter = typeof optRaw === "string" ? optRaw : optRaw.letter;
+                const label = typeof optRaw === "string" ? `Option ${letter}` : optRaw.text;
+                const isSelected = answers[q.displayNum] === letter;
                 return (
-                  <button key={opt} onClick={() => selectAnswer(opt)} style={{
+                  <button key={letter} onClick={() => selectAnswer(letter)} style={{
                     display: "flex", alignItems: "center", gap: 12,
                     padding: mode === "vue" ? "12px 16px" : "12px 16px",
                     borderRadius: mode === "vue" ? 3 : 10,
@@ -450,9 +458,9 @@ export default function ExamPage({ params }: { params: Promise<{ paperId: string
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: 12, fontWeight: 700,
                       color: isSelected ? "#fff" : t.muted, flexShrink: 0,
-                    }}>{mode === "vue" && isSelected ? "●" : opt}</span>
+                    }}>{mode === "vue" && isSelected ? "●" : letter}</span>
                     <span style={{ fontSize: 14, color: isSelected ? t.text : t.muted, fontWeight: isSelected ? 600 : 400 }}>
-                      Option {opt}
+                      {label}
                     </span>
                   </button>
                 );

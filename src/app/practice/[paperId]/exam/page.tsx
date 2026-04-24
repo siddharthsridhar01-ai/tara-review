@@ -8,7 +8,7 @@ import { C } from "@/lib/tara";
 type ExamPhase = "intro" | "exam" | "review-screen" | "submitted";
 type ThemeMode = "tara" | "vue";
 
-const EXAM_DURATION_SECONDS = 23 * (90 / 50) * 60; // ~41.4 min, scaled from 90 min / 50 qs
+const EXAM_DURATION_SECONDS = 48 * (90 / 50) * 60; // ~86.4 min, scaled from 90 min / 50 qs
 
 function formatTime(s: number) {
   const m = Math.floor(s / 60);

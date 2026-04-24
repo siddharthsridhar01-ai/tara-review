@@ -32,6 +32,7 @@ export const typeColors: Record<string, string> = {
   "Applying Principles": "#9b8ec9",
   "Weaken": "#ff7675",
   "Strengthen": "#00b894",
+  "Problem Solving": "#00b894",
 };
 
 export interface Question {

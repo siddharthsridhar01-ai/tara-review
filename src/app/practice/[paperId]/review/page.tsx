@@ -94,7 +94,7 @@ export default function ReviewPage({ params }: { params: Promise<{ paperId: stri
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <a href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", cursor: "pointer" }}>
             <span style={{ background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`, borderRadius: 8, padding: "5px 12px", fontSize: 11, fontWeight: 700, color: C.white, letterSpacing: 1 }}>TARA</span>
-            <span style={{ fontSize: 14, color: C.white, fontWeight: 600 }}>Critical Thinking</span>
+            <span style={{ fontSize: 14, color: C.white, fontWeight: 600 }}>TSA 2022</span>
             <span style={{ fontSize: 12, color: C.muted }}>Practice Paper</span>
           </a>
           <div style={{ display: "flex", gap: 4 }}>

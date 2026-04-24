@@ -118,7 +118,7 @@ export default function Home() {
               lineHeight: 1.7,
             }}
           >
-            Step-by-step guided walkthroughs for critical thinking questions.
+            Step-by-step guided walkthroughs for TSA critical thinking and problem solving questions.
             Select a paper below to review your answers.
           </p>
         </div>

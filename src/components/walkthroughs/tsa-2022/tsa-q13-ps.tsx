@@ -108,7 +108,7 @@ function SolveWalkthrough() {
           <div style={{ marginBottom: 6 }}><strong style={{ color: C.text }}>Acorns:</strong> <span style={{ color: C.fail }}>no garden</span>, <span style={{ color: C.ok }}>wifi</span>, <span style={{ color: C.fail }}>no parking</span>, <span style={{ color: C.ok }}>2 km ≤ 3</span> = <strong style={{ color: C.fail }}>2/4</strong></div>
           <div style={{ marginBottom: 6 }}><strong style={{ color: C.text }}>Beeches:</strong> <span style={{ color: C.ok }}>garden</span>, <span style={{ color: C.ok }}>wifi</span>, <span style={{ color: C.fail }}>no parking</span>, <span style={{ color: C.ok }}>1 km ≤ 3</span> = <strong style={{ color: C.ok }}>3/4</strong></div>
           <div style={{ marginBottom: 6 }}><strong style={{ color: C.text }}>Chestnuts:</strong> <span style={{ color: C.fail }}>no garden</span>, <span style={{ color: C.ok }}>wifi</span>, <span style={{ color: C.ok }}>parking</span>, <span style={{ color: C.ok }}>2 km ≤ 3</span> = <strong style={{ color: C.ok }}>3/4</strong></div>
-          <div><strong style={{ color: C.text }}>Denders:</strong> <span style={{ color: C.ok }}>garden</span>, <span style={{ color: C.ok }}>wifi</span>, <span style={{ color: C.ok }}>parking</span>, <span style={{ color: C.fail }}>4 km > 3</span> = <strong style={{ color: C.ok }}>3/4</strong></div>
+          <div><strong style={{ color: C.text }}>Denders:</strong> <span style={{ color: C.ok }}>garden</span>, <span style={{ color: C.ok }}>wifi</span>, <span style={{ color: C.ok }}>parking</span>, <span style={{ color: C.fail }}>{"4 km > 3"}</span> = <strong style={{ color: C.ok }}>3/4</strong></div>
         </div>
       ),
       color: C.assum,
